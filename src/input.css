@@ -27,3 +27,20 @@ body {
 .hamburger-active > span:nth-child(2){
     @apply scale-0;
 }
+
+.project-img {
+    @apply w-full h-64 object-cover hover:scale-125 transition
+    cursor-pointer;
+}
+
+.skill-title{
+    @apply hidden;
+}
+
+a:hover svg{
+    @apply absolute;
+}
+
+a:hover p.skill-title {
+    @apply block translate-y-10 transition text-white;
+}
