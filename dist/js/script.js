@@ -18,4 +18,3 @@ Hamburger.addEventListener('click', function(){
     Hamburger.classList.toggle('hamburger-active');
     navMenu.classList.toggle('hidden')
 });
-
