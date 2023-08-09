@@ -297,29 +297,29 @@
                         If you have any message, question or project you want to share, feel free to share it with me. I'm here to assist you!</p>
                 </div>
             </div>
-            <form>
+            <form name="submit-to-google-sheet">
                 <div class="w-full lg:w-2/3 lg:mx-auto">
                     <div class="w-full px-4 mb-8">
                         <label for="name" class="text-base text-tersier-0 font-bold ">Name</label>
-                        <input id="name" type="text" placeholder="enter your name..."
+                        <input id="name" name="nama" required type="text" placeholder="enter your name..."
                         class="w-full p-3 bg-slate-200 text-primary-0 rounded-md focus:outline-none focus:ring-tersier-0 focus:ring-2 focus:border-tersier-0">
                         
                     </div>
                     <div class="w-full px-4 mb-8">
                         <label for="email" class="text-base text-tersier-0 font-bold after:content-['*']
                         after:text-pink-600 after:ml-0.5">Email</label>
-                        <input id="email" type="text" placeholder="enter your email..."
+                        <input id="email" name="email" required type="email" placeholder="enter your email..."
                         class="w-full p-3 bg-slate-200 text-primary-0 rounded-md focus:outline-none focus:ring-tersier-0 focus:ring-2 focus:border-tersier-0">
                         
                     </div>
                     <div class="w-full px-4 mb-8">
                         <label for="message" class="text-base text-tersier-0 font-bold ">Message</label>
-                        <textarea id="message" type="text" placeholder="enter message"
+                        <textarea id="message" name="pesan" required type="text" placeholder="enter message"
                         class="w-full p-3 h-32 bg-slate-200 text-primary-0 rounded-md focus:outline-none focus:ring-tersier-0 focus:ring-2 focus:border-tersier-0">
                     </textarea>
                 </div>
                 <div class="w-full px-4">
-                    <button class="text-base text-white font-semibold bg-tersier-0 py-3 px-8 rounded-full w-full hover:bg-opacity-50 hover:shadow-lg ">Send</button>
+                    <button type="submit" class="btn-send text-base text-white font-semibold bg-tersier-0 py-3 px-8 rounded-full w-full hover:bg-opacity-50 hover:shadow-lg ">Send</button>
                 </div>
             </div>
         </form>
@@ -404,5 +404,17 @@
         
     </footer>
     <script src="dist/js/script.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwq9K6W_ML49uJopnCQhMmbRvi_QsbuIr18H3yv3VoooeGodzd2d5PaCZ3Sm0rW9ow5bQ/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const isSent = document.querySelector('.btn-send')
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert('pesan berhasil dikirim'))
+            .catch(error => alert('pesan gagal dikirim'))
+        })
+      </script>
 </body>
 </html>
